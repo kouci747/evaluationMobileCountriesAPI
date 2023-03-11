@@ -1,4 +1,5 @@
 import React from 'react';
+import {useRoute} from '@react-navigation/native';
 import {
   Image,
   SafeAreaView,
@@ -10,7 +11,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-const CountryCard = () => {
+const CountryCard = props => {
   return (
     <View>
       <Image
@@ -19,10 +20,12 @@ const CountryCard = () => {
         }}
         style={{width: 200, height: 200}}
       />
-      <Text>Full name of the country</Text>
-      <Text>Common name of the country</Text>
-      <Text>Capital of the country</Text>
-      <Text>Region/continent of the country</Text>
+      <Text>{props.countryName}</Text>
+
+      <Text>{props.countryCapital}</Text>
+      <Image source={{uri: props.flag}} />
+      <Text> La population est de {props.population}</Text>
+      <Text> les habitants y parlent {props.languages}</Text>
 
       {/*add a map here*/}
     </View>

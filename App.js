@@ -9,6 +9,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
   Colors,
@@ -22,19 +24,28 @@ import CountryDetail from './src/screens/countryDetail';
 import CountryList from './src/screens/countryList';
 import MainScreen from './src/screens/mainScreen';
 
+const Stack = createNativeStackNavigator();
+
 function App() {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Countries API</Text>
-        <>
-          {/* <CountryCard /> */}
-          <MainScreen />
-          <CountryList />
-          <CountryDetail />
-        </>
-      </View>
-    </SafeAreaView>
+    // <SafeAreaView>
+    //   <View>
+    //     <Text>Countries API</Text>
+    //     <>
+    //       {/* <CountryCard /> */}
+    //       <MainScreen />
+    //       <CountryList />
+    //       <CountryDetail />
+    //     </>
+    //   </View>
+    // </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="MainScreen" component={MainScreen} />
+        <Stack.Screen name="countryListNav" component={CountryList} />
+        <Stack.Screen name="countryDetailNav" component={CountryDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
