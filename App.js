@@ -17,6 +17,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import CountryCard from './src/components/CountryCard';
 import CountryDetail from './src/screens/countryDetail';
 import CountryList from './src/screens/countryList';
 import MainScreen from './src/screens/mainScreen';
@@ -27,6 +28,7 @@ function App() {
       <View>
         <Text>Countries API</Text>
         <>
+          {/* <CountryCard /> */}
           <MainScreen />
           <CountryList />
           <CountryDetail />
