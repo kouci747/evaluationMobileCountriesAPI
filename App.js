@@ -28,8 +28,8 @@ function App() {
         <Text>Countries API</Text>
         <>
           <MainScreen />
-          {/* <CountryList />
-          <CountryDetail /> */}
+          <CountryList />
+          <CountryDetail />
         </>
       </View>
     </SafeAreaView>
