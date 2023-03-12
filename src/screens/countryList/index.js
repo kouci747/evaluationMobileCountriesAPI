@@ -69,7 +69,20 @@ const CountryList = () => {
           capital: country.capital,
           flag: country.flags && country.flags.png,
           population: country.population,
+          latitude: country.latlng && country.latlng[0], // Access the first element of the latlng array
+          longitude: country.latlng && country.latlng[1],
+          capitalLat:
+            country.capitalInfo &&
+            country.capitalInfo.latlng &&
+            country.capitalInfo.latlng[0],
+          //capitalLong: country.latlng && country.capitalInfo.latlng[1],
+          capitalLong:
+            country.capitalInfo &&
+            country.capitalInfo.latlng &&
+            country.capitalInfo.latlng[1],
+          languages: Object.values(country.languages).map(language => language),
         }));
+
         const sortedCountries = countryData.sort((a, b) =>
           a.name.localeCompare(b.name),
         );
@@ -89,6 +102,12 @@ const CountryList = () => {
             capital: item.capital,
             flag: item.flag,
             population: item.population,
+            languages: item.languages,
+            latitude: item.latitude,
+            longitude: item.longitude,
+            capitalLat: item.capitalLat,
+            capitalLong: item.capitalLong,
+            languages: item.languages,
           })
         }>
         <Text>{item.name}</Text>

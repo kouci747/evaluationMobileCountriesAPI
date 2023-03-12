@@ -13,7 +13,17 @@ import CountryCard from '../../components/CountryCard';
 import axios from 'axios';
 
 const CountryDetail = ({route}) => {
-  const {pays, capital, flag, population, languages} = route.params;
+  const {
+    pays,
+    capital,
+    flag,
+    population,
+    //  languages,
+    latitude,
+    longitude,
+    capitalLat,
+    capitalLong,
+  } = route.params;
 
   //IT WOULD BE INTERRESTING TO FIND WHY THIS SHIT DID NOT WORK
   // console.log('nom du pays:', pays);
@@ -29,6 +39,7 @@ const CountryDetail = ({route}) => {
   //       console.log('petite erreur', error);
   //     });
   // }, []);
+  console.log(flag);
 
   return (
     <View>
@@ -37,7 +48,11 @@ const CountryDetail = ({route}) => {
         countryCapital={capital}
         flag={flag}
         population={population}
-        languages={languages}
+        //languages={languages}
+        latitude={latitude}
+        longitude={longitude}
+        capitalLat={capitalLat}
+        capitalLong={capitalLong}
       />
     </View>
   );

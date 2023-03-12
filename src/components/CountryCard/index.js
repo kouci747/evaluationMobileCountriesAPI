@@ -14,18 +14,29 @@ import {
 const CountryCard = props => {
   return (
     <View>
-      <Image
+      {/* <Image
         source={{
           uri: 'https://fr.web.img2.acsta.net/pictures/18/12/03/08/53/5968896.jpg',
         }}
         style={{width: 200, height: 200}}
-      />
+      /> */}
       <Text>{props.countryName}</Text>
 
       <Text>{props.countryCapital}</Text>
-      <Image source={{uri: props.flag}} />
+      <Image
+        source={{uri: props.flag}}
+        style={{width: 200, height: 200, resizeMode: 'contain'}}
+      />
       <Text> La population est de {props.population}</Text>
-      <Text> les habitants y parlent {props.languages}</Text>
+      {/* <Text> les habitants y parlent {props.languages}</Text> */}
+      <Text> latitude : {props.latitude}</Text>
+      <Text> longitude : {props.longitude}</Text>
+      <Text>
+        Latitude d'{props.countryCapital} : {props.capitalLat}
+      </Text>
+      <Text>
+        Longitude d'{props.countryCapital} : {props.capitalLong}
+      </Text>
 
       {/*add a map here*/}
     </View>
