@@ -80,7 +80,7 @@ const CountryList = () => {
             country.capitalInfo &&
             country.capitalInfo.latlng &&
             country.capitalInfo.latlng[1],
-          languages: Object.values(country.languages).map(language => language),
+          // languages: Object.values(country.languages).map(language => language),
         }));
 
         const sortedCountries = countryData.sort((a, b) =>

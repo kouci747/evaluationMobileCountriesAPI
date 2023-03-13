@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {
   Image,
@@ -11,6 +11,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+
 const CountryCard = props => {
   return (
     <View>
@@ -29,14 +30,41 @@ const CountryCard = props => {
       />
       <Text> La population est de {props.population}</Text>
       {/* <Text> les habitants y parlent {props.languages}</Text> */}
-      <Text> latitude : {props.latitude}</Text>
-      <Text> longitude : {props.longitude}</Text>
-      <Text>
-        Latitude d'{props.countryCapital} : {props.capitalLat}
-      </Text>
+      {Number(props.latitude) > 0 ? (
+        <Text>latitude: {props.latitude} Nord</Text>
+      ) : (
+        <Text>latitude: {props.latitude} Sud</Text>
+      )}
+      {Number(props.longitude) > 0 ? (
+        <Text>longitude: {props.longitude} Est</Text>
+      ) : (
+        <Text>longitude: {props.longitude} Ouest</Text>
+      )}
+
       <Text>
         Longitude d'{props.countryCapital} : {props.capitalLong}
       </Text>
+      {Number(props.capitalLat) >= 0 ? (
+        <Text>
+          Latitude d'{props.countryCapital} : {props.capitalLat} Nord
+        </Text>
+      ) : (
+        <Text>
+          Latitude d'{props.countryCapital} : {props.capitalLat} Sud
+        </Text>
+      )}
+
+      {/* Lorsqu'une latitude est positive : est elle dans l'hémisphère nord, sud sinon */}
+      {/* Lorsqu'une longitude est positive : elle est à l'est, ouest sinon */}
+      {Number(props.capitalLong) >= 0 ? (
+        <Text>
+          Longitude d'{props.countryCapital} : {props.capitalLat} Est
+        </Text>
+      ) : (
+        <Text>
+          Longitude d'{props.countryCapital} : {props.capitalLat} Ouest
+        </Text>
+      )}
 
       {/*add a map here*/}
     </View>
