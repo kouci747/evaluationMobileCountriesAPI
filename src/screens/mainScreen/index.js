@@ -32,10 +32,13 @@ const MainScreen = () => {
   //coordonnées du point central du pays
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [dataExists, setDataExists] = useState('');
 
   useEffect(() => {
+    if (!country) return; //ajouter vette ligne pour éviter les req call API lorsque country est vide
     axios.get(`https://restcountries.com/v3.1/name/${country}`).then(res => {
       const countryData = res.data[0];
+      setDataExists(countryData);
 
       //console.log(countryData); Works
 
