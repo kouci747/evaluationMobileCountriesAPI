@@ -16,6 +16,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Snackbar from 'react-native-snackbar';
 import Spinner from 'react-native-loading-spinner-overlay';
+import Toast from 'react-native-toast-message';
 
 const MainScreen = () => {
   const navigation = useNavigation(); //STEP 2
@@ -64,34 +65,38 @@ const MainScreen = () => {
   });
 
   const handleSearch = () => {
-    navigation.navigate('countryDetailNav', {
-      //pays : param attendu dans countryDetail
-      //countryName : state du useState
-      pays: countryName,
-      capital: countryCapital,
-      population: countryPopulation,
-      flag: flag,
-      capitalLat: capitalLat,
-      capitalLong: capitalLong,
-      latitude: latitude,
-      longitude: longitude,
-
-      //flag,
-    });
-    //
-    console.log(country);
+    if (country) {
+      navigation.navigate('countryDetailNav', {
+        //pays : param attendu dans countryDetail
+        //countryName : state du useState
+        pays: countryName,
+        capital: countryCapital,
+        population: countryPopulation,
+        flag: flag,
+        capitalLat: capitalLat,
+        capitalLong: capitalLong,
+        latitude: latitude,
+        longitude: longitude,
+      });
+      console.log(country);
+    } else {
+      Toast.show({
+        type: 'error',
+        text1: 'Please enter a Valid country Name',
+        //text2: 'This is some something 👋',
+        visibilityTime: 3000,
+      });
+    }
   };
 
   return (
     <Container>
       <Text> Main Screen</Text>
-
       <Button
         title="Browse Country List"
         onPress={() => navigation.navigate('countryListNav')}
         style={{marginBottom: 20}}
       />
-
       <StyledTextInput
         placeholder="enter a country "
         placeholderTextColor="#fff"
@@ -99,12 +104,24 @@ const MainScreen = () => {
         onChangeText={text => setCountry(text)}
         style={{marginBottom: 20}}
       />
-
       <Button
         title="Search for a specific country"
         onPress={handleSearch}
         style={{marginBottom: 20}}
       />
+      {/* <Button
+        title="test toast"
+        onPress={() =>
+          Toast.show({
+            type: 'success',
+            text1: 'Hello',
+            text2: 'This is some something 👋',
+            visibilityTime: 3000,
+          })
+        }
+      /> */}
+      {/* TOAST must be the last child of the View to work */}
+      <Toast />
     </Container>
   );
 };

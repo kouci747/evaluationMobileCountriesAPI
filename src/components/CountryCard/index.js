@@ -17,12 +17,6 @@ import styled from 'styled-components';
 const CountryCard = props => {
   return (
     <Container>
-      {/* <Image
-        source={{
-          uri: 'https://fr.web.img2.acsta.net/pictures/18/12/03/08/53/5968896.jpg',
-        }}
-        style={{width: 200, height: 200}}
-      /> */}
       <CountryNameText>{props.countryName}</CountryNameText>
 
       <DetailText>{props.countryCapital}</DetailText>
@@ -36,10 +30,7 @@ const CountryCard = props => {
         />
       </TouchableOpacity>
 
-      <DetailText>
-        {' '}
-        La population est de {props.population} habitants
-      </DetailText>
+      <DetailText>La population est de {props.population} habitants</DetailText>
 
       {Number(props.latitude) > 0 ? (
         <DetailText>Latitude centrale: {props.latitude} Nord</DetailText>
@@ -57,11 +48,11 @@ const CountryCard = props => {
       </Text> */}
       {Number(props.capitalLat) >= 0 ? (
         <DetailText>
-          Latitude d'{props.countryCapital} : {props.capitalLat} Nord
+          Latitude de {props.countryCapital} : {props.capitalLat} Nord
         </DetailText>
       ) : (
         <DetailText>
-          Latitude d'{props.countryCapital} : {props.capitalLat} Sud
+          Latitude de {props.countryCapital} : {props.capitalLat} Sud
         </DetailText>
       )}
 
@@ -69,11 +60,11 @@ const CountryCard = props => {
       {/* Lorsqu'une longitude est positive : elle est à l'est, ouest sinon */}
       {Number(props.capitalLong) >= 0 ? (
         <DetailText>
-          Longitude d'{props.countryCapital} : {props.capitalLong} Est
+          Longitude de {props.countryCapital} : {props.capitalLong} Est
         </DetailText>
       ) : (
         <DetailText>
-          Longitude d'{props.countryCapital} : {props.capitalLong} Ouest
+          Longitude de {props.countryCapital} : {props.capitalLong} Ouest
         </DetailText>
       )}
 
