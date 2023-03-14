@@ -40,7 +40,10 @@ function App() {
     //   </View>
     // </SafeAreaView>
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false, //mettre à true pour afficher les headers de toutes les pages
+        }}>
         <Stack.Screen name="MainScreen" component={MainScreen} />
         <Stack.Screen name="countryListNav" component={CountryList} />
         <Stack.Screen name="countryDetailNav" component={CountryDetail} />

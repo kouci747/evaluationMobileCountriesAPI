@@ -13,52 +13,10 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/native'; //STEP 1
+import styled from 'styled-components';
 const CountryList = () => {
   const navigation = useNavigation(); //STEP 2
   const [countries, setCountries] = useState([]);
-  //   useEffect(() => {
-  //     axios
-  //       .get('https://restcountries.com/v3.1/all')
-  //       .then(response => {
-  //         const countryNames = response.data.map(country => country.name.common);
-  //         //const countryCapital = response.data.map(country => country.capital);
-
-  //         const sortedCountries = countryNames.sort();
-  //         setCountries(sortedCountries);
-  //         //console.log('Country names:', countryNames);
-  //         //console.log('Country capitals:', countryCapital);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }, []);
-
-  //   const renderCountry = ({item}) => (
-  //     <View>
-  //       <TouchableOpacity
-  //         onPress={() =>
-  //           navigation.navigate('countryDetailNav', {
-  //             pays: item,
-  //           })
-  //         }>
-  //         <Text>{item}</Text>
-  //       </TouchableOpacity>
-  //     </View>
-  //   );
-  //   return (
-  //     <View>
-  //       <Text> Country List</Text>
-
-  //       <FlatList
-  //         data={countries}
-  //         renderItem={renderCountry}
-  //         keyExtractor={item => item}
-  //       />
-  //     </View>
-  //   );
-  // };
-
-  // export default CountryList;
 
   useEffect(() => {
     axios
@@ -110,13 +68,13 @@ const CountryList = () => {
             languages: item.languages,
           })
         }>
-        <Text>{item.name}</Text>
+        <StyledText>{item.name}</StyledText>
       </TouchableOpacity>
     </View>
   );
 
   return (
-    <View>
+    <Container>
       <Text>Country List</Text>
 
       <FlatList
@@ -124,8 +82,25 @@ const CountryList = () => {
         renderItem={renderCountry}
         keyExtractor={item => item.name}
       />
-    </View>
+    </Container>
   );
 };
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #010814;
+`;
+
+const StyledText = styled.Text`
+  height: 40px;
+  width: 300px;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid gray;
+  color: #fff;
+`;
 
 export default CountryList;

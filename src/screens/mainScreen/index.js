@@ -13,6 +13,7 @@ import {
 import {useNavigation} from '@react-navigation/native'; //STEP 1
 import {TextInput} from 'react-native';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const MainScreen = () => {
   const navigation = useNavigation(); //STEP 2
@@ -79,23 +80,61 @@ const MainScreen = () => {
   };
 
   return (
-    <View>
+    <Container>
       <Text> Main Screen</Text>
 
       <Button
         title="Browse Country List"
         onPress={() => navigation.navigate('countryListNav')}
+        style={{marginBottom: 20}}
       />
 
-      <TextInput
+      <StyledTextInput
         placeholder="enter a country "
+        placeholderTextColor="#fff"
         value={country}
         onChangeText={text => setCountry(text)}
+        style={{marginBottom: 20}}
       />
 
-      <Button title="Search for a specific country" onPress={handleSearch} />
-    </View>
+      <Button
+        title="Search for a specific country"
+        onPress={handleSearch}
+        style={{marginBottom: 20}}
+      />
+    </Container>
   );
 };
+
+// const Container = styled.View`
+//   flex: 1;
+//   background-color: #000;
+//   align-items: center;
+//   justify-content: center;
+// `;
+
+// const StyledTextInput = styled.TextInput`
+//   background-color: #222; /* slightly lighter than #000 */
+//   border: 1px solid #ccc;
+//   border-radius: 5px;
+//   padding: 10px;
+//   font-size: 16px;
+//   margin-bottom: 20px;
+// `;
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #010814;
+`;
+
+const StyledTextInput = styled.TextInput`
+  height: 40px;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid gray;
+  color: #fff;
+`;
 
 export default MainScreen;
