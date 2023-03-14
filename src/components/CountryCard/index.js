@@ -29,21 +29,21 @@ const CountryCard = props => {
         style={{width: 200, height: 200, resizeMode: 'contain'}}
       />
       <Text> La population est de {props.population}</Text>
-      {/* <Text> les habitants y parlent {props.languages}</Text> */}
+
       {Number(props.latitude) > 0 ? (
-        <Text>latitude: {props.latitude} Nord</Text>
+        <Text>Latitude centrale: {props.latitude} Nord</Text>
       ) : (
-        <Text>latitude: {props.latitude} Sud</Text>
+        <Text>Latitude centrale: {props.latitude} Sud</Text>
       )}
       {Number(props.longitude) > 0 ? (
-        <Text>longitude: {props.longitude} Est</Text>
+        <Text>longitude centrale : {props.longitude} Est</Text>
       ) : (
-        <Text>longitude: {props.longitude} Ouest</Text>
+        <Text>longitude centrale : {props.longitude} Ouest</Text>
       )}
 
-      <Text>
+      {/* <Text>
         Longitude d'{props.countryCapital} : {props.capitalLong}
-      </Text>
+      </Text> */}
       {Number(props.capitalLat) >= 0 ? (
         <Text>
           Latitude d'{props.countryCapital} : {props.capitalLat} Nord
@@ -58,11 +58,11 @@ const CountryCard = props => {
       {/* Lorsqu'une longitude est positive : elle est à l'est, ouest sinon */}
       {Number(props.capitalLong) >= 0 ? (
         <Text>
-          Longitude d'{props.countryCapital} : {props.capitalLat} Est
+          Longitude d'{props.countryCapital} : {props.capitalLong} Est
         </Text>
       ) : (
         <Text>
-          Longitude d'{props.countryCapital} : {props.capitalLat} Ouest
+          Longitude d'{props.countryCapital} : {props.capitalLong} Ouest
         </Text>
       )}
 

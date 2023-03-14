@@ -20,7 +20,6 @@ const MainScreen = () => {
 
       <Button
         title="Look for countries"
-        title="look for countries"
         onPress={() => navigation.navigate('countryListNav')}
       />
     </View>
