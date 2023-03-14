@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  Button,
   useColorScheme,
   View,
 } from 'react-native';
@@ -12,6 +13,7 @@ import {useRoute} from '@react-navigation/native';
 import CountryCard from '../../components/CountryCard';
 import axios from 'axios';
 import styled from 'styled-components';
+import Toast from 'react-native-toast-message';
 
 const CountryDetail = ({route}) => {
   const {
@@ -41,6 +43,16 @@ const CountryDetail = ({route}) => {
   //     });
   // }, []);
   console.log(flag);
+  //ce useEffect s'execute une seule fois au debut du chargement de la page
+  //=> make it reappear whenever a button is clicked
+
+  useEffect(() => {
+    Toast.show({
+      type: 'success',
+      text1: `Informations about ${pays}`,
+      visibilityTime: 5000,
+    });
+  });
 
   return (
     <Container>
@@ -54,6 +66,8 @@ const CountryDetail = ({route}) => {
         capitalLat={capitalLat}
         capitalLong={capitalLong}
       />
+
+      <Toast />
     </Container>
   );
 };

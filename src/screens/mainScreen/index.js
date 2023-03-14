@@ -126,21 +126,6 @@ const MainScreen = () => {
   );
 };
 
-// const Container = styled.View`
-//   flex: 1;
-//   background-color: #000;
-//   align-items: center;
-//   justify-content: center;
-// `;
-
-// const StyledTextInput = styled.TextInput`
-//   background-color: #222; /* slightly lighter than #000 */
-//   border: 1px solid #ccc;
-//   border-radius: 5px;
-//   padding: 10px;
-//   font-size: 16px;
-//   margin-bottom: 20px;
-// `;
 const Container = styled.View`
   flex: 1;
   justify-content: center;
