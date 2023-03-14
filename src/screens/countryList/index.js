@@ -14,14 +14,17 @@ import {
 import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/native'; //STEP 1
 import styled from 'styled-components';
-import Snackbar from 'react-native-snackbar';
-import Spinner from 'react-native-loading-spinner-overlay';
+// import Snackbar from 'react-native-snackbar';
+// import Spinner from 'react-native-loading-spinner-overlay';
+import {ActivityIndicator} from 'react-native';
 
 const CountryList = () => {
   const navigation = useNavigation(); //STEP 2
   const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get('https://restcountries.com/v3.1/all')
       .then(response => {
@@ -48,11 +51,11 @@ const CountryList = () => {
           a.name.localeCompare(b.name),
         );
         setCountries(sortedCountries);
+        setLoading(false);
       })
       .catch(error => {
         setLoading(false);
-        setSnackbarMessage('Failed to load countries');
-        setSnackbarVisible(true);
+
         console.log(error);
       });
   }, []);
@@ -83,11 +86,20 @@ const CountryList = () => {
     <Container>
       <Text>Country List</Text>
 
-      <FlatList
+      {/* <FlatList
         data={countries}
         renderItem={renderCountry}
         keyExtractor={item => item.name}
-      />
+      /> */}
+      {loading ? (
+        <ActivityIndicator size="large" color="#fff" />
+      ) : (
+        <FlatList
+          data={countries}
+          renderItem={renderCountry}
+          keyExtractor={item => item.name}
+        />
+      )}
     </Container>
   );
 };

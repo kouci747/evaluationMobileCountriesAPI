@@ -32,13 +32,14 @@ const MainScreen = () => {
   //coordonnées du point central du pays
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [dataExists, setDataExists] = useState('');
+  const [dataExists, setDataExists] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!country) return; //ajouter vette ligne pour éviter les req call API lorsque country est vide
     axios.get(`https://restcountries.com/v3.1/name/${country}`).then(res => {
       const countryData = res.data[0];
-      setDataExists(countryData);
+      setDataExists(true);
 
       //console.log(countryData); Works
 
@@ -61,6 +62,7 @@ const MainScreen = () => {
       setFlag(Countryflag);
       setCapitalLat(CapitalLat), setCapitalLong(CapitalLong);
       setLatitude(Latitude), setLongitude(Longitude);
+      setIsLoaded(true);
 
       //console.log(Countryname, Countrycapital, Countrypopulation); Works
     });
@@ -68,7 +70,7 @@ const MainScreen = () => {
   });
 
   const handleSearch = () => {
-    if (country) {
+    if (country && dataExists) {
       navigation.navigate('countryDetailNav', {
         //pays : param attendu dans countryDetail
         //countryName : state du useState
