@@ -48,7 +48,6 @@ const CountryDetail = ({route}) => {
         countryCapital={capital}
         flag={flag}
         population={population}
-        //languages={languages}
         latitude={latitude}
         longitude={longitude}
         capitalLat={capitalLat}
