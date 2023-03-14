@@ -11,6 +11,7 @@ import {
 import {useRoute} from '@react-navigation/native';
 import CountryCard from '../../components/CountryCard';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const CountryDetail = ({route}) => {
   const {
@@ -42,7 +43,7 @@ const CountryDetail = ({route}) => {
   console.log(flag);
 
   return (
-    <View>
+    <Container>
       <CountryCard
         countryName={pays}
         countryCapital={capital}
@@ -53,8 +54,15 @@ const CountryDetail = ({route}) => {
         capitalLat={capitalLat}
         capitalLong={capitalLong}
       />
-    </View>
+    </Container>
   );
 };
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #010814;
+`;
 
 export default CountryDetail;

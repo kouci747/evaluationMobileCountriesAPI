@@ -14,6 +14,8 @@ import {useNavigation} from '@react-navigation/native'; //STEP 1
 import {TextInput} from 'react-native';
 import axios from 'axios';
 import styled from 'styled-components';
+import Snackbar from 'react-native-snackbar';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const MainScreen = () => {
   const navigation = useNavigation(); //STEP 2
@@ -33,6 +35,7 @@ const MainScreen = () => {
   useEffect(() => {
     axios.get(`https://restcountries.com/v3.1/name/${country}`).then(res => {
       const countryData = res.data[0];
+
       //console.log(countryData); Works
 
       const Countryname = countryData.name.common;

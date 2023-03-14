@@ -8,67 +8,97 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Linking, //pour accéder aux liens URL
   useColorScheme,
   View,
 } from 'react-native';
+import styled from 'styled-components';
 
 const CountryCard = props => {
   return (
-    <View>
+    <Container>
       {/* <Image
         source={{
           uri: 'https://fr.web.img2.acsta.net/pictures/18/12/03/08/53/5968896.jpg',
         }}
         style={{width: 200, height: 200}}
       /> */}
-      <Text>{props.countryName}</Text>
+      <CountryNameText>{props.countryName}</CountryNameText>
 
-      <Text>{props.countryCapital}</Text>
-      <Image
-        source={{uri: props.flag}}
-        style={{width: 200, height: 200, resizeMode: 'contain'}}
-      />
-      <Text> La population est de {props.population}</Text>
+      <DetailText>{props.countryCapital}</DetailText>
+      <TouchableOpacity
+        onPress={() =>
+          Linking.openURL(`https://en.wikipedia.org/wiki/${props.countryName}`)
+        }>
+        <Image
+          source={{uri: props.flag}}
+          style={{width: 200, height: 200, resizeMode: 'contain'}}
+        />
+      </TouchableOpacity>
+
+      <DetailText>
+        {' '}
+        La population est de {props.population} habitants
+      </DetailText>
 
       {Number(props.latitude) > 0 ? (
-        <Text>Latitude centrale: {props.latitude} Nord</Text>
+        <DetailText>Latitude centrale: {props.latitude} Nord</DetailText>
       ) : (
-        <Text>Latitude centrale: {props.latitude} Sud</Text>
+        <DetailText>Latitude centrale: {props.latitude} Sud</DetailText>
       )}
       {Number(props.longitude) > 0 ? (
-        <Text>longitude centrale : {props.longitude} Est</Text>
+        <DetailText>longitude centrale : {props.longitude} Est</DetailText>
       ) : (
-        <Text>longitude centrale : {props.longitude} Ouest</Text>
+        <DetailText>longitude centrale : {props.longitude} Ouest</DetailText>
       )}
 
       {/* <Text>
         Longitude d'{props.countryCapital} : {props.capitalLong}
       </Text> */}
       {Number(props.capitalLat) >= 0 ? (
-        <Text>
+        <DetailText>
           Latitude d'{props.countryCapital} : {props.capitalLat} Nord
-        </Text>
+        </DetailText>
       ) : (
-        <Text>
+        <DetailText>
           Latitude d'{props.countryCapital} : {props.capitalLat} Sud
-        </Text>
+        </DetailText>
       )}
 
       {/* Lorsqu'une latitude est positive : est elle dans l'hémisphère nord, sud sinon */}
       {/* Lorsqu'une longitude est positive : elle est à l'est, ouest sinon */}
       {Number(props.capitalLong) >= 0 ? (
-        <Text>
+        <DetailText>
           Longitude d'{props.countryCapital} : {props.capitalLong} Est
-        </Text>
+        </DetailText>
       ) : (
-        <Text>
+        <DetailText>
           Longitude d'{props.countryCapital} : {props.capitalLong} Ouest
-        </Text>
+        </DetailText>
       )}
 
       {/*add a map here*/}
-    </View>
+    </Container>
   );
 };
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background: #010814;
+`;
+
+const DetailText = styled.Text`
+  font-size: 14px;
+  color: #fff;
+  margin-top: 5px;
+`;
+
+const CountryNameText = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 20px;
+`;
 
 export default CountryCard;

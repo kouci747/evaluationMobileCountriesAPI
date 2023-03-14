@@ -14,6 +14,9 @@ import {
 import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/native'; //STEP 1
 import styled from 'styled-components';
+import Snackbar from 'react-native-snackbar';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 const CountryList = () => {
   const navigation = useNavigation(); //STEP 2
   const [countries, setCountries] = useState([]);
@@ -47,6 +50,9 @@ const CountryList = () => {
         setCountries(sortedCountries);
       })
       .catch(error => {
+        setLoading(false);
+        setSnackbarMessage('Failed to load countries');
+        setSnackbarVisible(true);
         console.log(error);
       });
   }, []);
@@ -95,7 +101,7 @@ const Container = styled.View`
 
 const StyledText = styled.Text`
   height: 40px;
-  width: 300px;
+  width: 350px;
   margin: 10px;
   border-radius: 10px;
   padding: 10px;
