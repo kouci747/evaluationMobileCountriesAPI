@@ -23,7 +23,8 @@ import CountryCard from './src/components/CountryCard';
 import CountryDetail from './src/screens/countryDetail';
 import CountryList from './src/screens/countryList';
 import MainScreen from './src/screens/mainScreen';
-
+import Favorites from './src/screens/favorites';
+import ContextProvider from './src/context';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -39,16 +40,19 @@ function App() {
     //     </>
     //   </View>
     // </SafeAreaView>
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false, //mettre à true pour afficher les headers de toutes les pages
-        }}>
-        <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="countryListNav" component={CountryList} />
-        <Stack.Screen name="countryDetailNav" component={CountryDetail} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false, //mettre à true pour afficher les headers de toutes les pages
+          }}>
+          <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="countryListNav" component={CountryList} />
+          <Stack.Screen name="countryDetailNav" component={CountryDetail} />
+          <Stack.Screen name="favoritesNav" component={Favorites} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ContextProvider>
   );
 }
 

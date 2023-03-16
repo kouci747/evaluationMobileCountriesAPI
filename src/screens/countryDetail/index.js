@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,13 +9,16 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {useRoute} from '@react-navigation/native';
+import {useRoute, useNavigation} from '@react-navigation/native';
 import CountryCard from '../../components/CountryCard';
 import axios from 'axios';
 import styled from 'styled-components';
 import Toast from 'react-native-toast-message';
+import {Context} from '../../context';
+//import Context from '../../context';
 
 const CountryDetail = ({route}) => {
+  const navigation = useNavigation(); //STEP 2
   const {
     pays,
     capital,
@@ -54,6 +57,8 @@ const CountryDetail = ({route}) => {
     });
   });
 
+  const {favorites, setFavorites} = useContext(Context);
+
   return (
     <Container>
       <CountryCard
@@ -66,7 +71,16 @@ const CountryDetail = ({route}) => {
         capitalLat={capitalLat}
         capitalLong={capitalLong}
       />
-
+      <Button
+        title="Add to favorites"
+        onPress={() => {
+          navigation.navigate('favoritesNav', {
+            paysFav: pays,
+          });
+          setFavorites(oldState => [...favorites, ...pays]);
+        }}
+        style={{marginBottom: 20}}
+      />
       <Toast />
     </Container>
   );
