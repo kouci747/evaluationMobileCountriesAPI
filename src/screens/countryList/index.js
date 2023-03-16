@@ -33,7 +33,7 @@ const CountryList = () => {
           capital: country.capital,
           flag: country.flags && country.flags.png,
           population: country.population,
-          latitude: country.latlng && country.latlng[0], // Access the first element of the latlng array
+          latitude: country.latlng && country.latlng[0],
           longitude: country.latlng && country.latlng[1],
           capitalLat:
             country.capitalInfo &&

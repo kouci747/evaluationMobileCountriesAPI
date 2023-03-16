@@ -114,6 +114,11 @@ const MainScreen = () => {
         onPress={handleSearch}
         style={{marginBottom: 20}}
       />
+      <Button
+        title="Check Favorites"
+        onPress={() => navigation.navigate('favoritesNav')}
+        style={{marginBottom: 20}}
+      />
       {/* <Button
         title="test toast"
         onPress={() =>

@@ -4,14 +4,20 @@ export const Context = createContext();
 
 const ContextProvider = ({children}) => {
   const [favorites, setFavorites] = useState(['coucou']);
-  const a = 'hello';
+  //const [delete, setDelete]=useState('')
+
+  const deleteFavorite = fav => {
+    setFavorites(prevFavorites =>
+      prevFavorites.filter(favorite => favorite !== fav),
+    );
+  };
 
   return (
     <Context.Provider
       value={{
         favorites,
         setFavorites,
-        a,
+        deleteFavorite,
       }}>
       {children}
     </Context.Provider>

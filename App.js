@@ -25,7 +25,9 @@ import CountryList from './src/screens/countryList';
 import MainScreen from './src/screens/mainScreen';
 import Favorites from './src/screens/favorites';
 import ContextProvider from './src/context';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
@@ -46,6 +48,18 @@ function App() {
           screenOptions={{
             headerShown: false, //mettre à true pour afficher les headers de toutes les pages
           }}>
+          <Stack.Screen name="TabNavigator" options={{title: 'Tabs'}}>
+            {() => (
+              <Tab.Navigator
+                screenOptions={{
+                  headerShown: false, //mettre à true pour afficher les headers de toutes les pages
+                }}>
+                <Tab.Screen name="MainScreen" component={MainScreen} />
+                <Tab.Screen name="CountryListNav" component={CountryList} />
+                <Tab.Screen name="favoritesNav" component={Favorites} />
+              </Tab.Navigator>
+            )}
+          </Stack.Screen>
           <Stack.Screen name="MainScreen" component={MainScreen} />
           <Stack.Screen name="countryListNav" component={CountryList} />
           <Stack.Screen name="countryDetailNav" component={CountryDetail} />

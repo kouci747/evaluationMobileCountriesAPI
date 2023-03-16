@@ -55,7 +55,7 @@ const CountryDetail = ({route}) => {
       text1: `Informations about ${pays}`,
       visibilityTime: 5000,
     });
-  });
+  }, []);
 
   const {favorites, setFavorites} = useContext(Context);
 
@@ -74,10 +74,17 @@ const CountryDetail = ({route}) => {
       <Button
         title="Add to favorites"
         onPress={() => {
-          navigation.navigate('favoritesNav', {
-            paysFav: pays,
+          // navigation.navigate('favoritesNav', {
+          //   paysFav: pays,
+          // });
+          Toast.show({
+            type: 'success',
+            text1: 'Ajouté aux favoris',
+
+            visibilityTime: 3000,
           });
-          setFavorites(oldState => [...favorites, ...pays]);
+
+          setFavorites(oldState => [...favorites, pays]);
         }}
         style={{marginBottom: 20}}
       />
