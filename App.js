@@ -26,6 +26,7 @@ import MainScreen from './src/screens/mainScreen';
 import Favorites from './src/screens/favorites';
 import ContextProvider from './src/context';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -51,9 +52,27 @@ function App() {
           <Stack.Screen name="TabNavigator" options={{title: 'Tabs'}}>
             {() => (
               <Tab.Navigator
-                screenOptions={{
-                  headerShown: false, //mettre à true pour afficher les headers de toutes les pages
-                }}>
+                screenOptions={({route}) => ({
+                  headerShown: false,
+                  tabBarIcon: ({focused, color, size}) => {
+                    let iconName;
+
+                    if (route.name === 'MainScreen') {
+                      iconName = focused ? 'home' : 'home-outline';
+                    } else if (route.name === 'CountryListNav') {
+                      iconName = focused ? 'ios-list' : 'ios-list-outline';
+                    } else if (route.name === 'favoritesNav') {
+                      iconName = focused ? 'ios-list' : 'ios-list-outline';
+                    }
+
+                    // You can return any component that you like here!
+                    return (
+                      <Ionicons name={iconName} size={size} color={color} />
+                    );
+                  },
+                  tabBarActiveTintColor: 'tomato',
+                  tabBarInactiveTintColor: 'gray',
+                })}>
                 <Tab.Screen name="MainScreen" component={MainScreen} />
                 <Tab.Screen name="CountryListNav" component={CountryList} />
                 <Tab.Screen name="favoritesNav" component={Favorites} />
