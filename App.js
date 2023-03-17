@@ -32,17 +32,6 @@ const Tab = createBottomTabNavigator();
 
 function App() {
   return (
-    // <SafeAreaView>
-    //   <View>
-    //     <Text>Countries API</Text>
-    //     <>
-    //       {/* <CountryCard /> */}
-    //       <MainScreen />
-    //       <CountryList />
-    //       <CountryDetail />
-    //     </>
-    //   </View>
-    // </SafeAreaView>
     <ContextProvider>
       <NavigationContainer>
         <Stack.Navigator

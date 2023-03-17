@@ -86,11 +86,6 @@ const CountryList = () => {
     <Container>
       <Text>Country List</Text>
 
-      {/* <FlatList
-        data={countries}
-        renderItem={renderCountry}
-        keyExtractor={item => item.name}
-      /> */}
       {loading ? (
         <ActivityIndicator size="large" color="#fff" />
       ) : (
