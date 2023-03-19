@@ -14,9 +14,8 @@ import {
 import axios from 'axios';
 import {useNavigation, useRoute} from '@react-navigation/native'; //STEP 1
 import styled from 'styled-components';
-// import Snackbar from 'react-native-snackbar';
-// import Spinner from 'react-native-loading-spinner-overlay';
 import {ActivityIndicator} from 'react-native';
+import {getAllCountries} from '../../services/countriesService';
 
 const CountryList = () => {
   const navigation = useNavigation(); //STEP 2
@@ -25,37 +24,14 @@ const CountryList = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get('https://restcountries.com/v3.1/all')
+    getAllCountries() //returns sortedCountries from countriesService.js
       .then(response => {
-        const countryData = response.data.map(country => ({
-          name: country.name.common,
-          capital: country.capital,
-          flag: country.flags && country.flags.png,
-          population: country.population,
-          latitude: country.latlng && country.latlng[0],
-          longitude: country.latlng && country.latlng[1],
-          capitalLat:
-            country.capitalInfo &&
-            country.capitalInfo.latlng &&
-            country.capitalInfo.latlng[0],
-          //capitalLong: country.latlng && country.capitalInfo.latlng[1],
-          capitalLong:
-            country.capitalInfo &&
-            country.capitalInfo.latlng &&
-            country.capitalInfo.latlng[1],
-          // languages: Object.values(country.languages).map(language => language),
-        }));
-
-        const sortedCountries = countryData.sort((a, b) =>
-          a.name.localeCompare(b.name),
-        );
-        setCountries(sortedCountries);
+        //response is sortedCountries
+        setCountries(response); //setCountries is set with the response from getAllCountries (being sortedCountries)
         setLoading(false);
       })
       .catch(error => {
         setLoading(false);
-
         console.log(error);
       });
   }, []);
